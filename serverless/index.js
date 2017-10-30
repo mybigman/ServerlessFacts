@@ -50,6 +50,19 @@ module.exports = function (context, req) {
                 speech: "Computer says no!"
             });
             break;
+        
+        case 'about_guests':
+            let wikipediaUrl = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exlimit=max&explaintext&exintro&titles=RoEduNet&redirects=';
+            const request = require('request');
+            request(wikipediaUrl, function (error, response, body) {
+                context.log('error:', error); // Print the error if one occurred
+                context.log('statusCode:', response && response.statusCode);
+                context.log('body:', body);
+                context.log(body.query.pages[0].extract);
+                context.res.send({
+                    speech: body.query.pages[0].extract
+                });
+            });
 
         default:
             context.res.send({
