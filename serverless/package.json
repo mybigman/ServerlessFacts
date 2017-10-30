@@ -1,0 +1,12 @@
+{
+  "name": "serverless",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "feedparser-promised": "^1.4.2"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
+}
