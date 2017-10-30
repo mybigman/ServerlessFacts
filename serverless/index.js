@@ -19,6 +19,7 @@ module.exports = function (context, req) {
                 speech: "You simoultaneously have a server and you don't have a server. " +
                 "In a sense, serverless is Schroedinger's compute."
             });
+            break;
         case 'get_news':
             const feedparser = require('feedparser-promised');
             const feedUrl = 'https://blogs.msdn.microsoft.com/appserviceteam/feed/';
