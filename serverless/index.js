@@ -20,6 +20,7 @@ module.exports = function (context, req) {
                 "In a sense, serverless is Schroedinger's compute."
             });
             break;
+
         case 'get_news':
             const feedparser = require('feedparser-promised');
             const feedUrl = 'https://blogs.msdn.microsoft.com/appserviceteam/feed/';
@@ -43,11 +44,18 @@ module.exports = function (context, req) {
                 });
             });
             break;
+
         case 'run_the_demo':
             context.res.send({
                 speech: "Computer says no!"
             });
             break;
-
+            
+        default:
+            context.res.send({
+                speech: "This is Azure Functions backend speaking. " +
+                "Google Home has successfully reached me but i can't figure out" +
+                "what it is that you want me to do."
+            });
     }
 }
