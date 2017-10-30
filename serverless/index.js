@@ -42,5 +42,12 @@ module.exports = function (context, req) {
                     speech: "I couldn't connect to Azure Functions news feed"
                 });
             });
+            break;
+        case 'run_the_demo':
+            context.res.send({
+                speech: "Computer says no!"
+            });
+            break;
+
     }
 }
