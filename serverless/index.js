@@ -50,11 +50,11 @@ module.exports = function (context, req) {
                 speech: "Computer says no!"
             });
             break;
-            
+
         default:
             context.res.send({
                 speech: "This is Azure Functions backend speaking. " +
-                "Google Home has successfully reached me but i can't figure out" +
+                "Google Home has successfully reached me but i can't figure out " +
                 "what it is that you want me to do."
             });
     }
