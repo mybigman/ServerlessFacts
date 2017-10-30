@@ -58,11 +58,14 @@ module.exports = function (context, req) {
                 context.log('error:', error); // Print the error if one occurred
                 context.log('statusCode:', response && response.statusCode);
                 context.log('body:', body);
-                context.log(body.query.pages[0].extract);
+                let jsonRes = JSON.parse(body);
+                let page = Object.keys(jsonRes.query.pages)[0];
+                let pageText = jsonRes.query.pages[page].extract;
                 context.res.send({
-                    speech: body.query.pages[0].extract
+                    speech: pageText
                 });
             });
+            break;
 
         default:
             context.res.send({
