@@ -35,7 +35,7 @@ module.exports = async function (context, req) {
             let items = await feedparser.parse(feedUrl); 
             context.log(items[0].title);
             context.res.send({
-                speech: "Here is the title of the most recent blog post: " + items[0].title
+                speech: "Here is the title of the most recent blog post. " + items[0].title
             });
             break;
 
