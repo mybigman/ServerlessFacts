@@ -7,7 +7,7 @@ function getActionContext(intent, resolvedQuery) {
     return actionContext ? actionContext : 'Unable to get intent.';
 }
 
-module.exports = async function (context, req) {
+module.exports = async (context, req) => {
     const intent = req.body.result.action;
     const resolvedQuery = req.body.result.resolvedQuery;
     context.log(getActionContext(intent, resolvedQuery));
@@ -32,10 +32,15 @@ module.exports = async function (context, req) {
         case 'get_news':
             const feedparser = require('feedparser-promised');
             const feedUrl = 'https://blogs.msdn.microsoft.com/appserviceteam/feed/';
-            let items = await feedparser.parse(feedUrl); 
-            context.log(items[0].title);
+            let items = await feedparser.parse(feedUrl);
+            let title = items[2].title;
+            let author = items[2].author;
+            let date = Date.parse(items[2].pubDate);
+            let hoursDelta = Math.floor(date / 1000 / 60);
+            let daysDelta = hoursDelta % 24;
             context.res.send({
-                speech: "Here is the title of the most recent blog post. " + items[0].title
+                speech: `Here is the title of the most recent blog post. ${title}. ` +
+                    `It was published ${daysDelta} days ago by ${author}.`
             });
             break;
 
